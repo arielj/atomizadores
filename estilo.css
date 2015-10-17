@@ -1,0 +1,436 @@
+@font-face {
+    font-family: 'aeroregular';
+    src: url('/fonts/aero-webfont.eot');
+    src: url('/fonts/aero-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/aero-webfont.woff') format('woff'),
+         url('/fonts/aero-webfont.ttf') format('truetype'),
+         url('/fonts/aero-webfont.svg#aeroregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, html {
+  font-family: 'Ubuntu', serif;
+  height:98%;
+  width:98%;
+  background: #000;
+}
+
+#todo {
+  clear: both;
+  width: 800px;
+  margin: 15px auto;
+}
+
+/*Menu*/
+#barra {
+  color: #FFF;
+  text-align: center;
+  background: url(./img/header.jpg);
+}
+
+#barra > a {
+  margin: 0px 20px;
+  display: inline-block;
+  font-family: 'aeroregular', serif;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+#barra, #footer {
+  background:    -moz-linear-gradient(top, rgb(0,0,0), rgb(150,150,150));
+  background:      -o-linear-gradient(top, rgb(0,0,0), rgb(150,150,150));
+  background: -webkit-linear-gradient(top, rgb(0,0,0), rgb(150,150,150));
+}
+
+#copyright {
+  text-align: right;
+  font-size: 10px;
+  color: #FFF;
+}
+
+#contenido {
+  height: 349px;
+  overflow: hidden;
+  background: url(./img/fondo.jpg);
+  padding: 10px;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #FFF;
+}
+
+a:hover {
+  color: #0099FF;
+}
+
+h1 {
+  font-size: 18px;
+  margin: 0px 0px 10px 20px;
+  color: #FFF;
+  font-family: 'aeroregular', serif;
+}
+
+div.float {
+  float: left;
+  text-align: center;
+}
+
+/* Footer */
+#footer {
+  background: url(./img/footer1.jpg);
+  text-align: center;
+  height: 100px;
+  clear: left;
+}
+
+#footer .button {
+  text-align: center;
+  background: url(./img/footer.jpg) no-repeat;
+  background:    -moz-linear-gradient(top, rgb(191,226,246) 35%, rgb(255,255,255) 50%, rgb(191,226,246));
+  background:      -o-linear-gradient(top, rgb(191,226,246) 35%, rgb(255,255,255) 50%, rgb(191,226,246));
+  background: -webkit-linear-gradient(top, rgb(191,226,246) 35%, rgb(255,255,255) 50%, rgb(191,226,246));
+  width: 330px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin: 5px 35px;
+  padding: 10px 0px;
+  float: left;
+}
+
+#footer .button a img {
+  vertical-align: middle;
+  height: 70px;
+  border: 0px;
+}
+
+#footer .button a {
+  color: #000;
+  display: block;
+}
+
+#footer .button a:hover {
+  color: #0099FF;
+}
+
+#iewarning {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: #FFF;
+  background: red;
+  padding: 3px;
+  border: 1px solid yellow;
+  font-size: 14px;
+  z-index: 10;
+}
+
+#iewarning a {
+  display: block;
+}
+
+/* Fin Footer */
+
+/* Index */
+#indexTexto {
+  width: 330px;
+  margin: 31px 25px;
+  padding: 15px;
+  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 0.6);
+  /* For IE 5.5 - 7*/
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99FFFFFF, endColorstr=#99FFFFFF);
+  /* For IE 8*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99FFFFFF, endColorstr=#99FFFFFF)";
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  float: left;
+  text-align: justify;
+  font-weight: bold;}
+
+#indexSlide {
+  margin: 30px;
+}
+
+#slideIndex {
+  border: 2px solid #000000;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+/*Fin Index */
+
+/*Galería*/
+#galeria {
+  padding: 30px 0px;
+  text-align: center;
+}
+
+#galimgdiv {
+  height: 125px;
+  width: 100%;
+}
+
+#galimgdiv > img {
+  display: inline;
+  margin: 0px 30px 0px 30px;
+}
+
+img.galimg {
+  border: 2px solid #FFFFFF;
+  cursor: pointer;
+}
+
+img.galimg:hover {
+  border: 2px solid #0099FF;
+}
+
+div.flecha {
+  display: inline-block;
+  margin: 0px 15px 0px 15px;
+}
+
+div.flecha > img {
+  cursor: pointer;
+}
+
+#auxSlide {
+  display: none;
+}
+
+div.hidden {
+  display: none;
+}
+/*Fin Galería*/
+
+/*Productos*/
+#productos > #listado a {
+  display: block;
+}
+
+#productos > #listado a:hover {
+  color: #0099FF;
+}
+  
+#productos > #listado td {
+  text-align: center;
+  vertical-align: middle;
+  height: 60px;
+  width: 140px;
+  background: url(./img/botonprod.jpg);
+  background:    -moz-linear-gradient(top, rgb(0,0,0), rgb(150,150,150));
+  background:      -o-linear-gradient(top, rgb(0,0,0), rgb(150,150,150));
+  background: -webkit-linear-gradient(top, rgb(0,0,0), rgb(150,150,150));
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+#productos > #listado .grande {
+  font-size: 25px;
+}
+
+#productos > #listado table {
+  border-spacing: 30px;
+}
+
+#listado {
+  float: left;
+  margin: 0px 50px 0px 0px;
+}
+
+#producto #descripcion {
+  font-size: 14px;
+  font-weight: bold;
+  position: relative;
+}
+
+#producto #titulo {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#producto #descripcion ul {
+  padding-left: 10px;
+}
+
+#producto {
+  margin: 0px 30px 0px 200px;
+  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 0.6);
+  /* For IE 5.5 - 7*/
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99FFFFFF, endColorstr=#99FFFFFF);
+  /* For IE 8*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99FFFFFF, endColorstr=#99FFFFFF)";
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+}
+
+#producto div.image {
+  margin: 0px 10px 0px 0px;
+  width: 250px;
+  height: 225px;
+}
+
+#producto #image {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border: 3px solid #000;
+  cursor: pointer;
+}
+
+#producto #aux {
+  display: none;
+}
+
+#producto table {
+  height: 280px;
+}
+
+#producto table td.top {
+  vertical-align: top;
+}
+
+#producto #titulo {
+  text-shadow: 9px 7px 9px #000000;
+}
+
+#producto div.opcionales {
+  position: absolute;
+  top: 70px;
+  left: 10px;
+  width: 200px;
+  background: #000;
+  color: #FFF;
+  padding: 5px;
+  border: 2px solid #FFF;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  display: none;
+}
+
+/*Fin productos*/
+
+/*Intro*/
+#intro {
+  position:relative;
+  height: 594px;
+  text-align: center;
+}
+
+#loader {
+  color: #FFF;
+  margin-top: 250px;
+}
+
+#fondopre, #pres1, #pres2, #pres3, #pres4, #pres5, #pres6 {
+  position: absolute;
+  left: 0px;
+  display: none;
+}
+
+#pres1, #pres2, #pres3, #fondopre {
+  top: 0px;
+  left: 0px;
+}
+
+#pres4, #pres5, #pres6 {
+  width: 100%;
+}
+
+#pres4 {
+  top: 300px;
+}
+
+#pres4 img {
+  margin: 0px 120px;
+}
+
+#pres5 {
+  top: 150px;
+}
+
+#pres6 {
+  top: 500px;
+}
+
+#pres6 a {
+  padding: 5px;
+  background:    -moz-linear-gradient(top, rgb(0,0,0), rgb(150,150,150));
+  background:      -o-linear-gradient(top, rgb(0,0,0), rgb(150,150,150));
+  background: -webkit-linear-gradient(top, rgb(0,0,0), rgb(150,150,150));
+  background: #000;
+}
+/*fin intro */
+
+/*Calculo*/
+#calculo {
+  background: url(/img/avion.png) 100% 250% no-repeat;
+  height: 100%;
+  padding-left: 20px;
+}
+#calculo span {
+  color: #000;
+  font-weight: bold;
+}
+#calculo .float {
+  margin-right: 20px;
+}
+#calculo .float.atomizador {
+  margin-right: 10px;
+}
+#divAtomizador6 {
+  padding-top: 0px;
+}
+#divAtomizador5 {
+  padding-top: 10px;
+}
+#divAtomizador4 {
+  padding-top: 20px;
+}
+#divAtomizador3 {
+  padding-top: 30px;
+}
+#divAtomizador2 {
+  padding-top: 40px;
+}
+#divAtomizador1 {
+  padding-top: 50px;
+}
+#atomizadores {
+  padding-top: 30px;
+}
+#calculo #chorro #divVelocidad {
+  width: 130px;
+}
+/* fin calculo */
+
+/* contacto */
+#contacto div.contacto {
+  text-align: center;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+#contacto #mapa {
+  height: 280px;
+  width: 450px;
+  
+}
+
+#contacto table {
+  width: 100%;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/*fin contacto*/
