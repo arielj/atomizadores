@@ -136,13 +136,15 @@ function init_calculo() {
       input.removeAttr('disabled');
       input.removeClass('disabled');
     }
+    recalcular();
   })
   $('#checkVelocidad').change(function(){
     text = $(this).is(':checked') ? 'Velocidad (m/h)' : 'Velocidad (km/h)';
     $(this).siblings('span').html(text);
     recalcularSuperficie();
   })
-  $('#recalculate a').click(function(){
+  $('#recalculate a').click(function(e){
+    e.preventDefault();
     recalcular();
   })
 }
@@ -161,6 +163,7 @@ function recalcularOrificios(){
 
 function recalcular(){
   recalcularSuperficie();
+  recalcularOrificios();
 }
 
 /*function limit_spinner_value(spinner) {

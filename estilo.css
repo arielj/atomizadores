@@ -411,6 +411,9 @@ div.hidden {
 #calculo #chorro #divVelocidad {
   width: 130px;
 }
+.stepper-wrap {
+  margin-right: 17px !important;
+}
 /* fin calculo */
 
 /* contacto */
