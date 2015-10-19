@@ -48,13 +48,15 @@ body, html {
   font-size: 10px;
   color: #FFF;
 }
-
-#contenido {
+#wrapper_contenido {
   height: 349px;
   overflow: hidden;
-  background: url(./img/fondo.jpg);
+  background: url(/img/fondo.jpg);
+}
+#contenido {
   padding: 10px;
   position: relative;
+  height: 100%;
 }
 
 a {
@@ -373,7 +375,6 @@ div.hidden {
 
 /*Calculo*/
 #calculo {
-  background: url(/img/avion.png) 100% 250% no-repeat;
   height: 100%;
   padding-left: 20px;
 }
@@ -409,7 +410,7 @@ div.hidden {
   padding-top: 30px;
 }
 #calculo #chorro #divVelocidad {
-  width: 130px;
+  width: 148px;
 }
 .stepper-wrap {
   margin-right: 17px !important;

@@ -9,10 +9,10 @@
   <link  href="http://fonts.googleapis.com/css?family=Ubuntu:300,300italic,regular,italic,500,500italic,bold,bolditalic&v1" rel="stylesheet" type="text/css" >
   <?php if (!is_ie("5")) { ?>
     <!--<script type='text/javascript' src="./scripts/jquery.js"></script>-->
-    <script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-    <script type="text/javascript" src="./scripts/scripts.js"></script>
+    <script type='text/javascript' src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <?php if (isset($scripts)) { ?>
       <script type="text/javascript" src="<?php echo $scripts; ?>"></script>
+    <script type="text/javascript" src="/scripts/scripts.js"></script>
   <?php  }
   }
   ?>

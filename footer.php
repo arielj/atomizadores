@@ -1,4 +1,5 @@
   </div>
+  </div>
   <div id='footer'>
     <div class='wrapper'>
       <div class='button'>

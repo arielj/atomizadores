@@ -20,4 +20,5 @@
     <a href="calculo.php">CALCULO DE VOLUMEN</a>
     <a href="contacto.php">CONTACTO</a>
   </div>
+  <div id='wrapper_contenido'>
   <div id='contenido'>

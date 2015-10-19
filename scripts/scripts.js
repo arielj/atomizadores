@@ -105,26 +105,7 @@ var values = {'a-50' : {'1': {},
               };
 
 function init_calculo() {
-  $('.spinner').each(function(){
-    min = null;
-    max = null;
-    step = 1;
-    v = $(this).attr('min');
-    if (v != undefined && v.match(/^\d+$/)) min = parseInt(v);
-    v = $(this).attr('max');
-    if (v != undefined && v.match(/^\d+$/)) max = parseInt(v);
-    v = $(this).attr('step');
-    if (v != undefined && v.match(/^\d+$/)) step = parseInt(v);
-    $(this).stepper({
-      type: 'int',
-      wheel_step: step,
-      arrow_step: step,
-      limit: [min,max],
-      onStep: function( val, up ) {
-        recalcular();
-      }
-    });
-  })  
+  $('input[type=number]').on('change',recalcular).number();
   
   $('.disable_atom').change(function(){
     parent = $(this).parents('.atomizador');
@@ -157,8 +138,14 @@ function recalcularSuperficie(){
 }
 
 function recalcularOrificios(){
-  pre = parseInt($('#presion').val());
-  c = parseInt($('#caudal').val());
+  pre = $('#presion').val();
+  atom_type = $('#atom_type').val();
+  new_caudal = 0;
+  $('.disable_atom:not(:checked)').each(function(idx, el){
+    hole = $(el).siblings('input[type=number]').val();
+    new_caudal += values[atom_type][hole][pre]/2
+  })
+  $('#caudal').val(new_caudal);
 }
 
 function recalcular(){
