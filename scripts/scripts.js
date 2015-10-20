@@ -50,8 +50,7 @@ $(document).ready(function() {
   if ($('#calculo').length > 0) init_calculo();
 });
 
-var values = {'a-50' : {'1': {},
-                        '2': {'40': 1.8},
+var values = {'a-50' : {'2': {'40': 1.8},
                         '3': {'20': 2.7,
                               '30': 4.4,
                               '40': 5.5
@@ -88,10 +87,7 @@ var values = {'a-50' : {'1': {},
                                 '60': 20.30
                                }
                          },
-              'a-90-2' : {'1': {},
-                          '2': {},
-                          '3': {},
-                          '4': {'20': 14,
+              'a-90-2' : {'4': {'20': 14,
                                 '30': 17,
                                 '40': 20.5
                                },
@@ -105,11 +101,10 @@ var values = {'a-50' : {'1': {},
               };
 
 function init_calculo() {
-  $('input[type=number]').on('change',recalcular).number();
+  $('input[type=number]').on('change',recalcular);
   
-  $('.disable_atom').change(function(){
-    parent = $(this).parents('.atomizador');
-    input = parent.find('.spinner');
+  $('.disable_atom').on('change', function(){
+    input = $(this).siblings('.hole');
     if ($(this).is(':checked')) {
       input.attr('disabled','disabled');
       input.addClass('disabled');
@@ -119,15 +114,53 @@ function init_calculo() {
     }
     recalcular();
   })
-  $('#checkVelocidad').change(function(){
+  $('#checkVelocidad').on('change', function(){
     text = $(this).is(':checked') ? 'Velocidad (m/h)' : 'Velocidad (km/h)';
     $(this).siblings('span').html(text);
-    recalcularSuperficie();
+    recalcular();
   })
-  $('#recalculate a').click(function(e){
+  $('#recalculate a').on('click', function(e){
     e.preventDefault();
     recalcular();
   })
+  $('#atom_type').on('change', function(){
+	recalcular();
+  });
+  $('.hole').on('change',recalcular);
+  recalcular();
+}
+
+function recalcularOrificios(){
+	atom_type = $('#atom_type').val();
+	min = '1';
+	max = '5';
+	if (atom_type == 'a-50') min = '2';
+    else if (atom_type == 'a-90-2') min = '4';
+	
+	$('.hole').attr('min',min).attr('max',max).each(function(idx,el){
+	  if ($(el).val() < min || $(el).val() > max) $(el).val(min);
+	});
+};
+
+function recalcularPresion(){
+	min_pre = '20';
+	max_pre = '60';
+	atom_type = $('#atom_type').val();
+	$('.hole:not(.disabled)').each(function(idx, el){
+	  pres_aux = values[atom_type][$(el).val()];
+	  pres = []; for(var property in pres_aux) pres.push(property);
+	  
+	  min = Math.min.apply(Math, pres);
+	  max = Math.max.apply(Math, pres);
+	  
+	  if (min > min_pre) min_pre = min;
+	  if (max < max_pre) max_pre = max;
+	})
+	cur_pre = $('#presion').val();
+	new_pre = cur_pre;
+	if (cur_pre < min_pre) new_pre = min_pre;
+	if (cur_pre > max_pre) new_pre = max_pre;
+	$('#presion').attr('min',min_pre).attr('max', max_pre).val(new_pre);
 }
 
 function recalcularSuperficie(){
@@ -137,20 +170,22 @@ function recalcularSuperficie(){
   $('input#superficie').val((ancho*velocidad/multiplier).toFixed(2));
 }
 
-function recalcularOrificios(){
+function recalcularCaudal(){
   pre = $('#presion').val();
   atom_type = $('#atom_type').val();
   new_caudal = 0;
   $('.disable_atom:not(:checked)').each(function(idx, el){
-    hole = $(el).siblings('input[type=number]').val();
+    hole = $(el).siblings('.hole').val();
     new_caudal += values[atom_type][hole][pre]/2
   })
   $('#caudal').val(new_caudal);
 }
 
 function recalcular(){
-  recalcularSuperficie();
-  recalcularOrificios();
+    recalcularSuperficie();
+    recalcularOrificios();
+	recalcularPresion();
+	recalcularCaudal();
 }
 
 /*function limit_spinner_value(spinner) {

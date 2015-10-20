@@ -14,12 +14,12 @@
         <div id="divAncho" class="float">
           <span>Ancho (m)</span>
           <br />
-          <input type="textfield" id="ancho" min='10' max='30' class='spinner' size="5" value="20" max='30' min='1' />
+          <input type="number" id="ancho" min='10' max='30' class='spinner' size="5" value="20" max='30' min='1' />
         </div>
         <div id="divVelocidad" class="float">
           <span>Velocidad (km/h)</span>
           <br />
-          <input type="textfield" id="velocidad" min='80' max='300' class='spinner' size="5" value="80"/>
+          <input type="number" id="velocidad" min='80' max='300' class='spinner' size="5" value="80"/>
           <br />
           m/h <input type="checkbox" id="checkVelocidad">
         </div>
@@ -32,32 +32,32 @@
       <div id='atomizadores'>
         <div id="divAtomizador6" class="float atomizador">
           <span>Atomizador 6</span><br />
-          <input type="number" id="atomizador6" min='1' max='5' size="5" value="1" class="disabled" disabled='disabled' /><br />
+          <input type="number" id="atomizador6" class='hole disabled' min='1' max='5' size="5" value="1" disabled='disabled' /><br />
           Deshabilitar <input type="checkbox" class='disable_atom' checked='checked'>
         </div>
         <div id="divAtomizador5" class="float atomizador">
           <span>Atomizador 5</span><br />
-          <input type="number" id="atomizador5" min='1' max='5' size="5" value="1" class="disabled" disabled='disabled'/><br />
+          <input type="number" id="atomizador5" class="hole disabled" min='1' max='5' size="5" value="1" disabled='disabled'/><br />
           Deshabilitar <input type="checkbox" class='disable_atom' checked='checked'>
         </div>
         <div id="divAtomizador4" class="float atomizador">
           <span>Atomizador 4</span><br />
-          <input type="number" id="atomizador4" min='1' max='5' size="5" value="1"/><br />
+          <input type="number" id="atomizador4" class="hole" min='1' max='5' size="5" value="1"/><br />
           Deshabilitar <input type="checkbox" class='disable_atom'>
         </div>
         <div id="divAtomizador3" class="float atomizador">
           <span>Atomizador 3</span><br />
-          <input type="number" id="atomizador3" min='1' max='5' size="5" value="1"/><br />
+          <input type="number" id="atomizador3" class="hole" min='1' max='5' size="5" value="1"/><br />
           Deshabilitar <input type="checkbox" class='disable_atom'>
         </div>
         <div id="divAtomizador2" class="float atomizador">
           <span>Atomizador 2</span><br />
-          <input type="number" id="atomizador2" min='1' max='5' size="5" value="1"/><br />
+          <input type="number" id="atomizador2" class="hole" min='1' max='5' size="5" value="1"/><br />
           Deshabilitar <input type="checkbox" class='disable_atom'>
         </div>
         <div id="divAtomizador1" class="float atomizador">
           <span>Atomizador 1</span><br />
-          <input type="number" id="atomizador1" min='1' max='5' size="5" value="1"/><br />
+          <input type="number" id="atomizador1" class="hole" min='1' max='5' size="5" value="1"/><br />
           Deshabilitar <input type="checkbox" class='disable_atom'>
         </div>
         <div style="clear:both"></div>
@@ -74,7 +74,7 @@
         <span>Modelo</span><br />
         <select id='atom_type'>
           <option value='a-50'>A-50</option>
-          <option value='a-90-1'>A-90</option>
+          <option value='a-90-1' selected='selected'>A-90</option>
           <option value='a-90-2'>A-90 con 2VRU</option>
         </select>
       </div>
