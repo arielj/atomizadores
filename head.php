@@ -12,9 +12,9 @@
     <script type='text/javascript' src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <?php if (isset($scripts)) { ?>
       <script type="text/javascript" src="<?php echo $scripts; ?>"></script>
+    <?php  } ?>
     <script type="text/javascript" src="/scripts/scripts.js"></script>
-  <?php  }
-  }
+  <?php }
   ?>
 	<meta name="description" content="Empresa dedicada a la producción de Atomizadores Rotativos para la agroindustria" />
 	<meta name="keywords" content="tecmoliq, semat, picos, atomizadores, transland, argentinos, daniel, juodziukynas, murillo, bombas, picos, t-jet" />

@@ -11,7 +11,7 @@
 <?php } ?>
 <div id='todo'>
   <div id='logo'>
-    <img src='./img/logo.jpg' alt='Atomizadores Argentinos'>
+    <img src='/img/logo.jpg' alt='Atomizadores Argentinos'>
   </div>
   <div id='barra'>
     <a href="inicio.php">HOME</a>
