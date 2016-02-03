@@ -387,6 +387,10 @@ div.hidden {
 }
 #calculo .float.atomizador {
   margin-right: 10px;
+  max-width: 110px;
+}
+#calculo .atomizador input {
+  width: 80%;
 }
 #divAtomizador6 {
   padding-top: 0px;
