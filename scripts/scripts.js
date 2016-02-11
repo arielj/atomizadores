@@ -101,7 +101,7 @@ var values = {'a-50' : {'2': {'40': 1.8},
               };
 
 function init_calculo() {
-  $('#atomizadores input[type=number]').on('change',recalcularCaudal);
+  $('#atomizadores input[type=number]').on('change', orificioChanged);
   $('#presion').on('change', presionChanged);
   $('#caudal, #atom_type').on('change',recalcularOrificios);
   
@@ -137,6 +137,11 @@ function presionChanged() {
   if ($('#presion').val() > 40) {
 	$('.hole').val(5);
   }
+}
+
+function orificioChanged() {
+  recalcularPresion();
+  recalcularCaudal();
 }
 
 function recalcularOrificios(){
@@ -189,7 +194,7 @@ function recalcularPresion(){
 	new_pre = cur_pre;
 	if (cur_pre < min_pre) new_pre = min_pre;
 	if (cur_pre > max_pre) new_pre = max_pre;
-	//$('#presion').attr('min',min_pre).attr('max', max_pre).val(new_pre);
+	$('#presion').val(new_pre);
 }
 
 function recalcularSuperficie(){
