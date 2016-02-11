@@ -101,7 +101,9 @@ var values = {'a-50' : {'2': {'40': 1.8},
               };
 
 function init_calculo() {
-  $('input[type=number]').on('change',recalcular);
+  $('#atomizadores input[type=number]').on('change',recalcularCaudal);
+  $('#presion').on('change', presionChanged);
+  $('#caudal, #atom_type').on('change',recalcularOrificios);
   
   $('.disable_atom').on('change', function(){
     input = $(this).siblings('.hole');
@@ -112,30 +114,57 @@ function init_calculo() {
       input.removeAttr('disabled');
       input.removeClass('disabled');
     }
-    recalcular();
+    recalcularCaudal();
   })
   $('#checkVelocidad').on('change', function(){
     text = $(this).is(':checked') ? 'Velocidad (m/h)' : 'Velocidad (km/h)';
     $(this).siblings('span').html(text);
-    recalcular();
+    recalcularCaudal();
   })
   $('#recalculate a').on('click', function(e){
     e.preventDefault();
-    recalcular();
+    recalcularCaudal();
   })
   $('#atom_type').on('change', function(){
-	recalcular();
+	recalcularCaudal();
   });
-  $('.hole').on('change',recalcular);
-  recalcular();
+  $('.hole').on('change',recalcularCaudal);
+  recalcularSuperficie();
+  recalcularCaudal();
+}
+
+function presionChanged() {
+  if ($('#presion').val() > 40) {
+	$('.hole').val(5);
+  }
 }
 
 function recalcularOrificios(){
 	atom_type = $('#atom_type').val();
+	pre = $('#presion').val();
 	min = '1';
 	max = '5';
 	if (atom_type == 'a-50') min = '2';
     else if (atom_type == 'a-90-2') min = '4';
+    
+    var hole = min*1;
+    var finished = false;
+    var calculated = 0;
+    while(!finished && hole <= 5) {
+      caudal = 0;
+      $('.hole:not(:disabled)').each(function(idx, el){
+        caudal += values[atom_type][hole][pre]/2;
+      })
+      calculated = caudal;
+      if (caudal >= $('#caudal').val()) finished = true;
+      else hole++;
+	}
+	
+	if (finished) $('.hole:not(:disabled)').val(hole)
+	else {
+		$('#caudal').val(calculated);
+		alert("No se puede generar el caudal desado con esta configuración.");
+	}
 	
 	$('.hole').attr('min',min).attr('max',max).each(function(idx,el){
 	  if ($(el).val() < min || $(el).val() > max) $(el).val(min);
@@ -160,7 +189,7 @@ function recalcularPresion(){
 	new_pre = cur_pre;
 	if (cur_pre < min_pre) new_pre = min_pre;
 	if (cur_pre > max_pre) new_pre = max_pre;
-	$('#presion').attr('min',min_pre).attr('max', max_pre).val(new_pre);
+	//$('#presion').attr('min',min_pre).attr('max', max_pre).val(new_pre);
 }
 
 function recalcularSuperficie(){
@@ -174,8 +203,8 @@ function recalcularCaudal(){
   pre = $('#presion').val();
   atom_type = $('#atom_type').val();
   new_caudal = 0;
-  $('.disable_atom:not(:checked)').each(function(idx, el){
-    hole = $(el).siblings('.hole').val();
+  $('.hole:not(:disabled)').each(function(idx, el){
+    hole = $(el).val();
     new_caudal += values[atom_type][hole][pre]/2
   })
   $('#caudal').val(new_caudal);
