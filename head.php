@@ -12,7 +12,7 @@
   <?php if (isset($scripts)) { ?>
     <script type="text/javascript" src="<?php echo $scripts; ?>"></script>
   <?php  } ?>
-  <script type="text/javascript" src="/scripts/scripts.js"></script>
+  <script type="text/javascript" src="/scripts/scripts.js?_v=1"></script>
 	<meta name="description" content="Empresa dedicada a la producción de Atomizadores Rotativos para la agroindustria" />
 	<meta name="keywords" content="tecmoliq, semat, picos, atomizadores, transland, argentinos, daniel, juodziukynas, murillo, bombas, picos, t-jet" />
 	<meta name="author" content="Ariel Juodziukynas" />

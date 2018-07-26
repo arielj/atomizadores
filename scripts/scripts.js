@@ -1,17 +1,17 @@
 var geocoder = null;
 $(document).ready(function() {
   if ($('#slideIndex').length > 0) {
-    $('#slideIndex').load(function() {$('#slideIndex').fadeIn(300);});
+    $('#slideIndex').on('load',function() {$('#slideIndex').fadeIn(300);});
     setInterval(function(){rotate("slideIndex","auxIndex","home/",6);}, 4000);
   }
 
-  if ($('.galimg').length > 0) {
+  if ($('.galimg').length) {
     $('.galimg').click(function() {
       url = $(this).attr('src');
       window.open(url.replace("/t","").replace("_t",""));
     });
 
-    $('.galimg').load(function() {$(this).fadeIn(300);});
+    $('.galimg').on('load', function() {$(this).fadeIn(300);});
 
     $('#atras').click(function() {mover("-");});
 
@@ -24,7 +24,7 @@ $(document).ready(function() {
       window.open(url.replace("/t","").replace("_t",""));
     });
 
-    $('#image').load(function() {$(this).fadeIn(300);});
+    $('#image').on('load',function() {$(this).fadeIn(300);});
     titulo = $('#titulo').attr("prod");
     folder = "t/vru_";
     total = 3;
