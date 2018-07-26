@@ -1,5 +1,4 @@
 <?php $title = 'Contacto';
-      $scripts = 'http://maps.google.com/maps/api/js?sensor=false';
       require("header.php"); ?>
     <div id="contacto">
       <h1>CONTACTO</h1>

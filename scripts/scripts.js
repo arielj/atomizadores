@@ -10,11 +10,11 @@ $(document).ready(function() {
       url = $(this).attr('src');
       window.open(url.replace("/t","").replace("_t",""));
     });
-    
+
     $('.galimg').load(function() {$(this).fadeIn(300);});
-    
+
     $('#atras').click(function() {mover("-");});
-    
+
     $('#adelante').click(function() {mover("+");});
   }
 
@@ -23,7 +23,7 @@ $(document).ready(function() {
       url = $(this).attr('src');
       window.open(url.replace("/t","").replace("_t",""));
     });
-    
+
     $('#image').load(function() {$(this).fadeIn(300);});
     titulo = $('#titulo').attr("prod");
     folder = "t/vru_";
@@ -36,17 +36,16 @@ $(document).ready(function() {
       total=4;
       $('#opcionales').mouseover(function () {$('#producto div.opcionales').toggle();});
       $('#opcionales').mouseout(function () {$('#producto div.opcionales').toggle();});
-    }      
+    }
     setInterval(function(){rotate("image","aux",folder,total);}, 4000);
   }
-  
+
   if ($(this).attr('title').search('Contacto') != -1) {
-    geocoder = new google.maps.Geocoder();
-    init_gmap();
+    init_map();
     $('#sem').mouseover(function() {centerMarker("sem");});
     $('#tec').mouseover(function() {centerMarker("tec");});
   }
-  
+
   if ($('#calculo').length > 0) init_calculo();
 });
 
@@ -104,7 +103,7 @@ function init_calculo() {
   $('#atomizadores input[type=number]').on('change', orificioChanged);
   $('#presion').on('change', presionChanged);
   $('#caudal, #atom_type').on('change',recalcularOrificios);
-  
+
   $('.disable_atom').on('change', function(){
     input = $(this).siblings('.hole');
     if ($(this).is(':checked')) {
@@ -151,7 +150,7 @@ function recalcularOrificios(){
 	max = '5';
 	if (atom_type == 'a-50') min = '2';
     else if (atom_type == 'a-90-2') min = '4';
-    
+
     var hole = min*1;
     var finished = false;
     var calculated = 0;
@@ -164,13 +163,13 @@ function recalcularOrificios(){
       if (caudal >= $('#caudal').val()) finished = true;
       else hole++;
 	}
-	
+
 	if (finished) $('.hole:not(:disabled)').val(hole)
 	else {
 		$('#caudal').val(calculated);
 		alert("No se puede generar el caudal desado con esta configuración.");
 	}
-	
+
 	$('.hole').attr('min',min).attr('max',max).each(function(idx,el){
 	  if ($(el).val() < min || $(el).val() > max) $(el).val(min);
 	});
@@ -183,10 +182,10 @@ function recalcularPresion(){
 	$('.hole:not(.disabled)').each(function(idx, el){
 	  pres_aux = values[atom_type][$(el).val()];
 	  pres = []; for(var property in pres_aux) pres.push(property);
-	  
+
 	  min = Math.min.apply(Math, pres);
 	  max = Math.max.apply(Math, pres);
-	  
+
 	  if (min > min_pre) min_pre = min;
 	  if (max < max_pre) max_pre = max;
 	})
@@ -306,37 +305,26 @@ var map;
 var markers = [];
 
 //Crea el mapa vacio
-function init_gmap() {
-  var options = {
-    zoom: startZoom,
-    center: new google.maps.LatLng(-34.71714803840951, -58.30205535624998),
-    zoomControl: true,
-    panControl: true,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-
-  map = new google.maps.Map(document.getElementById("mapa"), options);
-  var infoWindow = new google.maps.InfoWindow({ maxWidth: 100 });
+var mymap = false
+function init_map() {
+  mymap = L.map('mapa').setView([-34.71714803840951, -58.30205535624998], 14);
+  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      subdomains: ['a','b','c']
+  }).addTo(mymap)
 
   //tec
-  var marker1 = new google.maps.Marker({
-     map: map,
-     position: new google.maps.LatLng(-34.71714803840951, -58.30205535624998)
-  })
+  var marker1 = L.marker([-34.71714803840951, -58.30205535624998]).addTo(mymap);
 
   //semat
-  var marker2 = new google.maps.Marker({
-     map: map,
-     position: new google.maps.LatLng(-34.71520787519164, -58.29338645671385)
-  })
+  var marker2 = L.marker([-34.71520787519164, -58.29338645671385]).addTo(mymap);
+
   markers["tec"] = marker1;
   markers["sem"] = marker2;
 
-  map.setCenter(markers["tec"].position);
-  map.setZoom(14);
+  mymap.flyTo(markers["tec"].getLatLng(), 14);
 }
 
 function centerMarker(id){
-  map.setCenter(markers[id].position);
-  map.setZoom(14);
+  mymap.setView(markers[id].getLatLng(), 14);
 }
