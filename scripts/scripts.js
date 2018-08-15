@@ -46,194 +46,233 @@ $(document).ready(function() {
     $('#tec').mouseover(function() {centerMarker("tec");});
   }
 
-  if ($('#calculo').length > 0) init_calculo();
+  if ($('#calculo').length) init_calculo();
 });
 
-var values = {'a-50' : {'2': {'40': 1.8},
-                        '3': {'20': 2.7,
-                              '30': 4.4,
-                              '40': 5.5
-                             },
-                        '4': {'20': 3.6,
-                              '30': 6.6,
-                              '40': 8.6
-                             },
-                        '5': {'20': 4.7,
-                              '30': 8.6,
-                              '40': 12.5
-                             }
+
+
+// Cálculo de volúmen //
+
+var values = {'a-50' : {2: {40: 1.8},
+                        3: {20: 2.7,
+                            30: 4.4,
+                            40: 5.5
+                           },
+                        4: {20: 3.6,
+                            30: 6.6,
+                            40: 8.6
+                           },
+                        5: {20: 4.7,
+                            30: 8.6,
+                            40: 12.5
+                           }
                         },
-              'a-90-1' : {'1': {'20': 0.37,
-                                '30': 0.69,
-                                '40': 1
-                               },
-                          '2': {'20': 1.3,
-                                '30': 2.27,
-                                '40': 2.8
-                               },
-                          '3': {'20': 2.72,
-                                '30': 4.54,
-                                '40': 6.20
-                               },
-                          '4': {'20': 4.37,
-                                '30': 7.69,
-                                '40': 9.75
-                               },
-                          '5': {'20': 6.10,
-                                '30': 11.23,
-                                '40': 14.30,
-                                '50': 17.75,
-                                '60': 20.30
-                               }
+              'a-90-1' : {1: {20: 0.37,
+                              30: 0.69,
+                              40: 1
+                             },
+                          2: {20: 1.3,
+                              30: 2.27,
+                              40: 2.8
+                             },
+                          3: {20: 2.72,
+                              30: 4.54,
+                              40: 6.20
+                             },
+                          4: {20: 4.37,
+                              30: 7.69,
+                              40: 9.75
+                             },
+                          5: {20: 6.10,
+                              30: 11.23,
+                              40: 14.30,
+                              50: 17.75,
+                              60: 20.30
+                             }
                          },
-              'a-90-2' : {'4': {'20': 14,
-                                '30': 17,
-                                '40': 20.5
-                               },
-                          '5': {'20': 14,
-                                '30': 18,
-                                '40': 21,
-                                '50': 30,
-                                '60': 34
-                               }
+              'a-90-2' : {4: {20: 14,
+                              30: 17,
+                              40: 20.5
+                             },
+                          5: {20: 14,
+                              30: 18,
+                              40: 21,
+                              50: 30,
+                              60: 34
+                             }
                          }
               };
 
-function init_calculo() {
-  $('#atomizadores input[type=number]').on('change', orificioChanged);
-  $('#presion').on('change', presionChanged);
-  $('#caudal, #atom_type').on('change',recalcularOrificios);
+var values = {'a-50' : {
+                20: {
+                  3: 2.7,
+                  4: 3.6,
+                  5: 4.7
+                },
+                30: {
+                  3: 4.4,
+                  4: 6.6,
+                  5: 8.6
+                },
+                40: {
+                  2: 1.8,
+                  3: 5.5,
+                  4: 8.6,
+                  5: 12.5
+                }
+              },
+              'a-90-1' : {
+                20: {
+                  1: 0.37,
+                  2: 1.3,
+                  3: 2.72,
+                  4: 4.37,
+                  5: 6.10,
+                },
+                30: {
+                  1: 0.69,
+                  2: 2.27,
+                  3: 4.54,
+                  4: 7.69,
+                  5: 11.23,
+                },
+                40: {
+                  1: 1,
+                  2: 2.8,
+                  3: 6.20,
+                  4: 9.75,
+                  5: 14.30
+                },
+                50: {
+                  5: 17.75,
+                },
+                60: {
+                  5: 20.30,
+                }
+              },
+              'a-90-2' : {
+                20: {
+                  4: 14,
+                  5: 14
+                },
+                30: {
+                  4: 17,
+                  5: 18,
+                },
+                40: {
+                  4: 20.5,
+                  5: 21
+                },
+                50: {
+                  5: 30,
+                },
+                60: {
+                  5: 34
+                }
+              }
+            };
 
-  $('.disable_atom').on('change', function(){
-    input = $(this).siblings('.hole');
-    if ($(this).is(':checked')) {
-      input.attr('disabled','disabled');
-      input.addClass('disabled');
-    } else {
-      input.removeAttr('disabled');
-      input.removeClass('disabled');
-    }
-    recalcularCaudal();
-  })
-  $('#checkVelocidad').on('change', function(){
-    text = $(this).is(':checked') ? 'Velocidad (m/h)' : 'Velocidad (km/h)';
-    $(this).siblings('span').html(text);
-    recalcularCaudal();
-  })
-  $('#recalculate a').on('click', function(e){
-    e.preventDefault();
-    recalcularCaudal();
-  })
-  $('#atom_type').on('change', function(){
-	recalcularCaudal();
-  });
-  $('.hole').on('change',recalcularCaudal);
-  recalcularSuperficie();
-  recalcularCaudal();
+current_data = values['a-90-1'];
+presure_values = [];
+current_presure = 40;
+hole_values = [];
+current_hole = 4;
+width_i = false;
+speed_i = false;
+surface_i = false;
+caudal_i = false;
+enabled_atoms = 4;
+
+function setPresureData(e) {
+  // ajusto presión a valores posibles según atomizador
+  current_presure = parseInt($('#presure').val());
+
+  current_data = values[$(this).val()];
+  presure_values = _.keys(current_data);
+  min_pre = _.min(presure_values);
+  max_pre = _.max(presure_values);
+
+  if (current_presure < min_pre) current_presure = min_pre;
+  if (current_presure > max_pre) current_presure = max_pre;
+
+  $('#presure').val(current_presure).attr('min',min_pre).attr('max',max_pre);
+
+  hole_values = _.keys(current_data[current_presure]);
 }
 
-function presionChanged() {
-  if ($('#presion').val() > 40) {
-	$('.hole').val(5);
+function calcSurface(e) {
+  // calculo superficie según velocidad y ancho
+  multi = $('#checkVelocidad').is(':checked') ? 373 : 600;
+  width = parseInt(width_i.val());
+  speed = parseInt(speed_i.val());
+  surface_i.val((width*speed/multi).toFixed(2));
+}
+
+function calcHoles(e) {
+  // valor esperado
+  expected = parseFloat(surface_i.val())*parseFloat(caudal_i.val());
+  //console.log(expected);
+
+  // calculo para cada tamaño de orificio
+  calcs = []
+  _.each(presure_values, function(pre) {
+    _.each(_.keys(current_data[pre]), function(hole) {
+      hole = parseInt(hole);
+      calc = enabled_atoms*2*current_data[pre][hole];
+      calcs.push([calc,[hole,pre]]);
+    })
+  });
+  //console.log(calcs);
+
+  min_pair = false;
+  // busco par [orificio,presión] mínimo para cubrir valor esperado
+  _.each(calcs, function(pair) {
+    if (pair[0] > expected) {
+      if (!min_pair) min_pair = pair;
+      if (pair[0] < min_pair[0]) min_pair = pair;
+    }
+  });
+
+  // seteo orificio mínimo o muestro error
+  if (min_pair) {
+    //console.log(min_pair[0]+" "+min_pair[1][0]+" "+min_pair[1][1]);
+    $('.hole').val(min_pair[1][0]);
+    $('.hole.disabled').val('');
+    current_presure = min_pair[1][1];
+    $('#presure').val(current_presure);
+    $('#calculo').removeClass('with_error');
+  } else {
+    $('#calculo').addClass('with_error');
   }
 }
 
-function orificioChanged() {
-  recalcularPresion();
-  recalcularCaudal();
+function checkAtom(e) {
+  check = $(this);
+  atom = check.siblings('.hole');
+  if (check.is(':checked')) {
+    atom.prop('disabled', true).addClass('disabled');
+  } else {
+    atom.prop('disabled', false).removeClass('disabled');
+  }
+  enabled_atoms = $('.hole:not(.disabled)').length;
+  calcHoles();
 }
 
-function recalcularOrificios(){
-	atom_type = $('#atom_type').val();
-	pre = $('#presion').val();
-	min = '1';
-	max = '5';
-	if (atom_type == 'a-50') min = '2';
-    else if (atom_type == 'a-90-2') min = '4';
-
-    var hole = min*1;
-    var finished = false;
-    var calculated = 0;
-    while(!finished && hole <= 5) {
-      caudal = 0;
-      $('.hole:not(:disabled)').each(function(idx, el){
-        caudal += values[atom_type][hole][pre]/2;
-      })
-      calculated = caudal;
-      if (caudal >= $('#caudal').val()) finished = true;
-      else hole++;
-	}
-
-	if (finished) $('.hole:not(:disabled)').val(hole)
-	else {
-		$('#caudal').val(calculated);
-		alert("No se puede generar el caudal desado con esta configuración.");
-	}
-
-	$('.hole').attr('min',min).attr('max',max).each(function(idx,el){
-	  if ($(el).val() < min || $(el).val() > max) $(el).val(min);
-	});
-};
-
-function recalcularPresion(){
-	min_pre = '20';
-	max_pre = '60';
-	atom_type = $('#atom_type').val();
-	$('.hole:not(.disabled)').each(function(idx, el){
-	  pres_aux = values[atom_type][$(el).val()];
-	  pres = []; for(var property in pres_aux) pres.push(property);
-
-	  min = Math.min.apply(Math, pres);
-	  max = Math.max.apply(Math, pres);
-
-	  if (min > min_pre) min_pre = min;
-	  if (max < max_pre) max_pre = max;
-	})
-	cur_pre = $('#presion').val();
-	new_pre = cur_pre;
-	if (cur_pre < min_pre) new_pre = min_pre;
-	if (cur_pre > max_pre) new_pre = max_pre;
-	$('#presion').val(new_pre);
+function init_calculo() {
+  width_i = $('#width');
+  speed_i = $('#speed');
+  surface_i = $('#surface');
+  caudal_i = $('#caudal');
+  $('#atom_type').on('change', setPresureData).on('input', setPresureData).trigger('change');
+  $('#width, #speed').on('change', calcSurface).on('input', calcSurface).trigger('change');
+  $('#presure, #caudal').on('change', calcHoles).on('input', calcHoles).trigger('change');
+  $('.disable_atom').on('change', checkAtom);
 }
 
-function recalcularSuperficie(){
-  multiplier = $('input#checkVelocidad:checked').length == 0 ? 600 : 373;
-  ancho = parseInt($('input#ancho').val());
-  velocidad = parseInt($('input#velocidad').val());
-  $('input#superficie').val((ancho*velocidad/multiplier).toFixed(2));
-}
 
-function recalcularCaudal(){
-  pre = $('#presion').val();
-  atom_type = $('#atom_type').val();
-  new_caudal = 0;
-  $('.hole:not(:disabled)').each(function(idx, el){
-    hole = $(el).val();
-    new_caudal += values[atom_type][hole][pre]/2
-  })
-  $('#caudal').val(new_caudal);
-}
 
-function recalcular(){
-    recalcularSuperficie();
-    recalcularOrificios();
-	recalcularPresion();
-	recalcularCaudal();
-}
 
-/*function limit_spinner_value(spinner) {
-  max = parseInt(spinner.attr('max'));
-  min = parseInt(spinner.attr('min'));
-  value = spinner.val();
-  if (value > max) value = max;
-  if (value < min) value = min;
-  spinner.val(value);
-}
-function value_out_of_bound(spinner,val) {
-  max = parseInt(spinner.attr('max'));
-  min = parseInt(spinner.attr('min'));
-  return (val > max || val < min);
-}*/
+
 
 
 var rotateIndex = 1;

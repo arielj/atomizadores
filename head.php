@@ -3,11 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head profile="http://www.w3.org/2005/10/profile">
   <title>Atomizadores Argentinos - <?php echo $title ?></title>
-  <link rel="stylesheet" type="text/css" href="estilo.css" />
+  <link rel="stylesheet" type="text/css" href="estilo.css?_v=1" />
   <link rel="stylesheet" href="/leaflet/leaflet.css" />
   <link rel="shortcut icon" href="./img/favicon.ico" />
   <link  href="http://fonts.googleapis.com/css?family=Ubuntu:300,300italic,regular,italic,500,500italic,bold,bolditalic&v1" rel="stylesheet" type="text/css" >
   <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.min.js"></script>
   <script type="text/javascript" src="/leaflet/leaflet.js"></script>
   <?php if (isset($scripts)) { ?>
     <script type="text/javascript" src="<?php echo $scripts; ?>"></script>
