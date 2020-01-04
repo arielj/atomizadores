@@ -145,10 +145,10 @@ function initMap() {
   }).addTo(this.mymap)
 
   //tec
-  let marker1 = L.marker([-34.71714803840951, -58.30205535624998]).addTo(mymap);
+  let marker1 = L.marker([-34.71714803840951, -58.30205535624998]).addTo(this.mymap);
 
   //semat
-  let marker2 = L.marker([-34.71520787519164, -58.29338645671385]).addTo(mymap);
+  let marker2 = L.marker([-34.71520787519164, -58.29338645671385]).addTo(this.mymap);
 
   this.markers["tec"] = marker1;
   this.markers["sem"] = marker2;
@@ -157,7 +157,7 @@ function initMap() {
     this.mymap.setView(this.markers[id].getLatLng(), 14);
   }
 
-  this.mymap.flyTo(markers["tec"].getLatLng(), 14);
+  this.mymap.flyTo(this.markers["tec"].getLatLng(), 14);
 
   document.getElementById('contact_semat').addEventListener('click', _ => {
     this.centerMarker("sem")
