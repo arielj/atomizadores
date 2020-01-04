@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name='author' content='Ariel Juodziukynas' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Atomizadores Argentinos</title>
+    <link rel='shortcut icon' href='./img/favicon.ico' />
+
+    <link href="https://fonts.googleapis.com/css?family=Russo+One|Ubuntu&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+          integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+          crossorigin=""></script>
+
+    <link rel="stylesheet" href='./styles.css' />
+    <script src='./scripts.js'></script>
+  </head>
+  <body>
+    <div class='wrapper'>
+      <header id='top'>
+        <picture>
+          <source srcset='./img/logo_small.jpg' media='(max-width: 500px)' />
+          <img src='./img/logo.jpg' alt='Logo Atomizadores Argentinos'>
+        </picture>
+      </header>
+
+      <nav>
+        <a href='#home'>HOME</a>
+        <a href='#gallery'>GALERÍA</a>
+        <a href='#products'>PRODUCTOS</a>
+        <a href='#calculator'>CÁLCULO DE VOLÚMEN</a>
+        <a href='#contact_us'>CONTACTO</a>
+      </nav>
+    
+      <section id='home'>
+        <p>
+          Con el objetivo de ofrecer a las exigentes empresas de Aero-Aplicación un producto confiable y eficaz, SEMAT y TecMoLiq aunaron esfuerzos para plasmar estas cualidades en un equipo de Atomizadores Rotativos.
+          <br />
+          <br />
+          El análisis de consultas realizadas a empresas del medio definió la idea, y se desarrolló un producto que utiliza materiales apropiados y un trabajo eficiente de mecanizado y montaje para concluir en un equipo de primera línea.
+        </p>
+        <div id='carousel'>
+          <img src='./img/fotos/home/0.jpg' alt='Carrusel' class='current' />
+          <img src='./img/fotos/home/1.jpg' alt='Carrusel' />
+          <img src='./img/fotos/home/2.jpg' alt='Carrusel' />
+          <img src='./img/fotos/home/3.jpg' alt='Carrusel' />
+          <img src='./img/fotos/home/4.jpg' alt='Carrusel' />
+          <img src='./img/fotos/home/5.jpg' alt='Carrusel' />
+        </div>
+      </section>
+  
+      <section id='gallery'>
+        <h1>GALERÍA</h1>
+
+        <div id='gallery-grid' data-total=18 >
+        </div>
+
+        <div id='pagination'>
+          <button class='prev'>❮</button><button class='next'>❯</button>
+        </div>
+      </section>
+  
+      <section id='products'>
+        <h1>PRODUCTOS</h1>
+
+        <div class='nav'>
+          <button data-product='a50'>modelo<br />A-50</button>
+          <button data-product='a90'>modelo<br />A-90</button>
+          <button data-product='vru'>VRU</button>
+        </div>
+
+        <div class='products'>
+          <div id='a50' class='product current'>
+            <h2>A-50</h2>
+    
+            <ul>
+              <li>Cuerpo de Aluminio Anodizado</li>
+              <li>Canasto de Acero Inoxidable</li>
+              <li>Eje de Acero Inoxidable</li>
+              <li>Rodamientos para altas RPM con engrasador externo</li>
+              <li>Válvula antigoteo interna</li>
+              <li>Paletas de perfil alabeado y antigoteo externo en plástico de ingeniería</li>
+              <li>Válvula reguladora de caudal de 5 posiciones (VRU)</li>
+              <li>Caudal: hasta 20 L/m</li>
+            </ul>
+    
+            <div class='images'>
+              <a href='./img/fotos/a_50_0.jpg' target='_blank' class='current'>
+                <img src='./img/fotos/t/a_50_0.jpg' alt='A-50' />
+              </a>
+              <a href='./img/fotos/a_50_0.jpg' target='_blank'>
+                <img src='./img/fotos/t/a_50_1.jpg' alt='A-50' />
+              </a>
+              <a href='./img/fotos/a_50_0.jpg' target='_blank'>
+                <img src='./img/fotos/t/a_50_2.jpg' alt='A-50' />
+              </a>
+            </div>
+          </div>
+    
+          <div id='a90' class='product'>
+            <h2>A-90</h2>
+    
+            <ul>
+              <li>Cuerpo de Aluminio Anodizado</li>
+              <li>Canasto de Acero Inoxidable</li>
+              <li>Eje de Acero Inoxidable</li>
+              <li>Antigoteo Interno y Antigoteo Externo de alto caudal</li>
+              <li>Rodamientos para altas RPM con engrasador externo</li>
+              <li>Paletas de perfil alabeado en plástico de ingeniería</li>
+              <li>Válvula reguladora de caudal de 5 posiciones (VRU)</li>
+              <li>Opcionales</li>
+            </ul>
+    
+            <div class='images'>
+              <a href='./img/fotos/a_50_0.jpg' target='_blank' class='current'>
+                <img src='./img/fotos/t/a_90_0.jpg' alt='A-90' />
+              </a>
+              <a href='./img/fotos/a_50_0.jpg' target='_blank'>
+                <img src='./img/fotos/t/a_90_1.jpg' alt='A-90' />
+              </a>
+              <a href='./img/fotos/a_50_0.jpg' target='_blank'>
+                <img src='./img/fotos/t/a_90_2.jpg' alt='A-90' />
+              </a>
+              <a href='./img/fotos/a_50_0.jpg' target='_blank'>
+                <img src='./img/fotos/t/a_90_3.jpg' alt='A-90' />
+              </a>
+            </div>
+          </div>
+    
+          <div id='vru' class='product'>
+            <h2>VRU</h2>
+    
+            <ul>
+              <li>Cuerpo de Bronce Niquelado</li>
+              <li>Eje Calibrado de 5 posiciones de Acero Inoxidable</li>
+              <li>Entrada 1/8" BSP</li>
+              <li>Salida para manguera 8mm</li>
+              <li>Indicador con fácil regulación</li>
+            </ul>
+    
+            <div class='images'>
+              <a href='./img/fotos/a_50_0.jpg' target='_blank' class='current'>
+                <img src='./img/fotos/t/vru_0.jpg' alt='VRU' />
+              </a>
+              <a href='./img/fotos/a_50_0.jpg' target='_blank'>
+                <img src='./img/fotos/t/vru_1.jpg' alt='VRU' />
+              </a>
+              <a href='./img/fotos/a_50_0.jpg' target='_blank'>
+                <img src='./img/fotos/t/vru_2.jpg' alt='VRU' />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <section id='calculator'>
+        <h1>CÁLCULO DE VOLÚMEN</h1>
+        <div id='size_warning'>
+          Para ver el calculador de volúmen utilizá el celular en modo horizontal
+        </div>
+        <div id='calculator_fields'>
+          <img src='./img/avion.png' alt='avión' />
+          <div id='dimensiones'>
+            <div id="divAncho">
+              <span>Ancho (m)</span>
+              <br />
+              <input type="number" id="width" min='10' max='30' class='spinner' size="5" value="20" max='30' min='1' />
+            </div>
+            <div id="divVelocidad">
+              <span>Velocidad (km/h)</span>
+              <br />
+              <input type="number" id="speed" min='80' max='300' class='spinner' size="5" value="190"/>
+              <br />
+              m/h <input type="checkbox" id="checkVelocidad">
+            </div>
+            <div id="divSuperficie">
+              <span>Superficie (hect/minuto)</span><br />
+              <input type="textfield" id="surface" readonly='readonly' size="5" value="2.67"/>
+            </div>
+            <div style="clear:both"></div>
+          </div>
+          <div id='atomizadores'>
+            <div id="divAtomizador6" class="float atomizador">
+              <span>Atomizador 6</span><br />
+              <input id="atomizador6" class='hole disabled' disabled='disabled' readonly='readonly' /><br />
+              Deshabilitar <input type="checkbox" class='disable_atom' checked='checked'>
+            </div>
+            <div id="divAtomizador5" class="float atomizador">
+              <span>Atomizador 5</span><br />
+              <input id="atomizador5" class="hole disabled" disabled='disabled' readonly='readonly' /><br />
+              Deshabilitar <input type="checkbox" class='disable_atom' checked='checked'>
+            </div>
+            <div id="divAtomizador4" class="float atomizador">
+              <span>Atomizador 4</span><br />
+              <input id="atomizador4" class="hole" readonly='readonly' /><br />
+              Deshabilitar <input type="checkbox" class='disable_atom'>
+            </div>
+            <div id="divAtomizador3" class="float atomizador">
+              <span>Atomizador 3</span><br />
+              <input id="atomizador3" class="hole" readonly='readonly' /><br />
+              Deshabilitar <input type="checkbox" class='disable_atom'>
+            </div>
+            <div id="divAtomizador2" class="float atomizador">
+              <span>Atomizador 2</span><br />
+              <input id="atomizador2" class="hole" readonly='readonly' /><br />
+              Deshabilitar <input type="checkbox" class='disable_atom'>
+            </div>
+            <div id="divAtomizador1" class="float atomizador">
+              <span>Atomizador 1</span><br />
+              <input id="atomizador1" class="hole" readonly='readonly' /><br />
+              Deshabilitar <input type="checkbox" class='disable_atom'>
+            </div>
+            <div style="clear:both"></div>
+          </div>
+          <div id="chorro">
+            <div id="divPresion" class="float">
+              <span>Presión</span><br />
+              <input type="number" id="presure" min='20' max='60' step='10' size="5" value="40" />
+            </div>
+            <div id="divCaudal" class="float">
+              <span>Caudal (L/hect)</span><br />
+              <input type="number" id="caudal" min='1' max='100' size="5" value="0"/>
+            </div>
+            <div id='divAtom' class='float'>
+              <span>Modelo</span><br />
+              <select id='atom_type'>
+                <option value='a-50'>A-50</option>
+                <option value='a-90-1' selected='selected'>A-90</option>
+                <option value='a-90-2'>A-90 con 2VRU</option>
+              </select>
+            </div>
+          </div>
+          <div id='input_error'>
+            Los valores ingresados no permiten un cálculo posible.
+          </div>
+          <div id='hints'>
+            * Cada atomizador habilitado representa el de ambas alas. Ej: 4 atomizadores son en total 8 sumando las dos.
+            <br />
+            * El orificio y presión calculados son aproximados, el ajuste final se debe hacer manualmente con el equipo en marcha.
+          </div>
+        </div>
+      </section>
+  
+      <section id='contact_us'>
+        <h1>CONTACTO</h1>
+  
+        <div id='contact_semat'>
+          <b>SEMAT</b>
+          <br />
+          <br />
+          Tel: (054-011) 4251-7249
+          <br />
+          E-mail: sematpicos@hotmail.com
+          <br />
+          Comandante Vuelta de Obligado
+        </div>
+  
+        <div id='contact_tecmoliq'>
+          <b>TecMoLiq</b>
+          <br />
+          <br />
+          Tel: (054-011) 4252-6208
+          <br />
+          E-mail: tecmoliq@gmail.com
+          <br />
+          Comandante Franco 1133
+        </div>
+
+        <div id='map'>
+          Mapa
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <span>Diseño: Auryn Diseño</span>
+      <span class='separator'>|</span>
+      <span>Desarrollador: Ariel Juodziukynas</span>
+    </footer>
+    <a href='#top' id='back_to_top'>«</a>
+  </body>
+</html>
