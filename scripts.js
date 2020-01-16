@@ -1,10 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
+  bindBurger();
   bindCarousel();
   bindGallery();
   bindProducts();
   initCalculator()
   initMap();
 })
+
+function bindBurger() {
+  const burger = document.getElementById('burger');
+  const navBar = document.getElementById('navbar');
+  burger.addEventListener('click', _e => {
+    navBar.classList.toggle('expanded');
+  });
+
+  document.addEventListener('click', e => {
+    if (e.target.id == 'burger') return;
+
+    navBar.classList.remove('expanded');
+  })
+}
 
 function bindGallery() {
   this.gallerySection = document.getElementById('gallery');
